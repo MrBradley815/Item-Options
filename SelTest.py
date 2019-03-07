@@ -32,4 +32,17 @@ driver.find_element_by_xpath("//ul[@id='side-menu']/li[3]/a").click()
 WebDriverWait(driver, 15).until(EC.element_to_be_clickable((By.LINK_TEXT, "More information")))
 driver.find_element_by_xpath("//a[contains(text(), 'Showrooms')]").click()
 
+# Waits for page to load
+WebDriverWait(driver,15).until(EC.frame_to_be_available_and_switch_to_it('ContentFrame'))
+
+# Go to products
+products = driver.find_elements_by_name("Products")[1]
+products.click()
+
+# Waits for page to load
+WebDriverWait(driver,15).until(EC.visibility_of_element_located('filterList'))
+
+row_count = len(driver.find_elements_by_xpath("//table[@id='filterList']/tbody/tr"))
+print(row_count)
+
 
